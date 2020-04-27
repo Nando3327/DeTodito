@@ -14,7 +14,7 @@ const routes: Route[] = [
     path: 'categories',
     component: CategoriesComponent
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: '', pathMatch: 'full' }
 ];
 
 @NgModule({

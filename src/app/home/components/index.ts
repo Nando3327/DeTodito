@@ -5,5 +5,5 @@ export const HOME_COMPONENTS = [
   HomeComponent
 ];
 
-export * from "./home.component";
+export * from './home.component';
 

@@ -9,6 +9,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { DemoMaterialModule } from './material.module';
+import { AgGridModule } from 'ag-grid-angular';
+import { HomeModule } from './home';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { DemoMaterialModule } from './material.module';
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    DemoMaterialModule
+    DemoMaterialModule,
+    HomeModule
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

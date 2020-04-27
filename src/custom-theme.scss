@@ -54,3 +54,9 @@ $untitled-theme: mat-light-theme($untitled-primary, $untitled-accent, $untitled-
 // that you are using.
 @include angular-material-theme($untitled-theme);
 
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
+
+.ag-theme-alpine {
+  @include ag-theme-alpine();
+}
