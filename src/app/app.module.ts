@@ -12,6 +12,8 @@ import { DemoMaterialModule } from './material.module';
 import { HomeModule } from './home';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');
@@ -39,6 +41,14 @@ export function createTranslateLoader(http: HttpClient) {
       },
       isolate: false
     }),
+    FormlyModule.forRoot({
+      validationMessages: [
+        {name: 'required', message: 'Campo obligatorio'},
+        {name: 'email', message: 'Email incorrecto'},
+        {name: 'invalidDateFormat', message: 'Formato fecha invalido'},
+      ],
+    }),
+    FormlyMaterialModule,
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },

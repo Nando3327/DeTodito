@@ -7,6 +7,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from '../material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from '../data-table';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 @NgModule({
   imports: [BrowserModule,
@@ -16,7 +18,10 @@ import { DataTableModule } from '../data-table';
     MatNativeDateModule,
     ReactiveFormsModule,
     DemoMaterialModule,
-    DataTableModule],
+    DataTableModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
+  ],
   declarations: [...HOME_COMPONENTS],
   entryComponents: [...HOME_COMPONENTS],
   exports: [...HOME_COMPONENTS],

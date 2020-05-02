@@ -1,14 +1,7 @@
-<div class="contailer-fluid">
-  <div class="row">
-    <mat-form-field appearance="legacy" class="col-sm-12">
-      <input
-        matInput
-        [placeholder]="'input'"
-      />
-      <mat-icon matSuffix>search</mat-icon>
-    </mat-form-field>
-  </div>
-</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="box-shadow: none !important;">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 <hr>
 <div *ngIf="showTable">
   <app-data-table [tableData]="data" [tableOptions]="tableOptions"></app-data-table>

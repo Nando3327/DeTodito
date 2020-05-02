@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { DataTableOptionsModel } from '../../data-table/components';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   data: Array<any> = [];
   showTable = false;
   tableOptions: DataTableOptionsModel;
+
+  form = new FormGroup({});
+  model = { email: 'email@gmail.com' };
+  options: FormlyFormOptions = {};
+  fields: FormlyFieldConfig[];
 
   constructor() {
   }
@@ -71,7 +78,42 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
 
+  initForm(): void {
+    this.fields = [{
+      fieldGroupClassName: 'row',
+      key: 'formValuesAmountTransaction',
+      validators: {},
+      fieldGroup: [
+        {
+          key: 'email',
+          type: 'input',
+          className: 'col-md-6',
+          templateOptions: {
+            label: 'Email address',
+            placeholder: 'Enter email',
+            required: true,
+          }
+        },
+        {
+          key: 'text',
+          type: 'input',
+          className: 'col-md-6',
+          templateOptions: {
+            label: 'text',
+            placeholder: 'Enter email',
+            required: true,
+          }
+        },
+      ]
+    }];
+  }
+
+  onSubmit() {
+    console.log(this.model);
+  }
+
   ngOnInit(): void {
+    this.initForm();
     this.initGrid();
     for (let i = 1; i <= 100; i++) {
       this.data.push(createNewUser(i));
