@@ -1,7 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { DataTableOptionsModel } from '../../data-table/components';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +7,12 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['id', 'name', 'progress', 'color'];
-  dataSource: MatTableDataSource<any>;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
+  data: Array<any> = [];
+  showTable = false;
+  tableOptions: DataTableOptionsModel;
 
   constructor() {
-    // Create 100 users
-    const users = [];
-    for (let i = 1; i <= 100; i++) { users.push(createNewUser(i)); }
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
   }
 
   /**
@@ -29,20 +20,70 @@ export class HomeComponent implements OnInit, AfterViewInit {
    * be able to query its view for the initialized paginator and sort.
    */
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
+  initGrid() {
+    this.tableOptions = {
+      title: 'TITULO',
+      columns: [
+        {field: 'name', name: 'name'},
+        {field: 'progress', name: 'progress'},
+        {field: 'id', name: 'id'},
+        {field: 'color', name: 'color'},
+        {
+          field: 'actions',
+          name: 'Acciones',
+          type: 'actions',
+          options: {
+            buttons: [
+              {
+                tooltip: 'detailes',
+                icon: 'remove_red_eye',
+                handler: this.searchDetails.bind(this)
+              }
+            ]
+          }
+        }
+      ],
+      buttons: [
+        {
+          name: 'new',
+          handler: () => {
+            this.deleteTransferAction();
+          }
+        },
+        {
+          name: 'delete',
+          handler: () => {
+            this.deleteTransferAction();
+          }
+        }
+      ],
+      selectField: true
+    };
+  }
+
+  searchDetails(): void {
+
+  }
+
+  deleteTransferAction(): void {
+
   }
 
   ngOnInit(): void {
+    this.initGrid();
+    for (let i = 1; i <= 100; i++) {
+      this.data.push(createNewUser(i));
+    }
+    setTimeout(_ => {
+      this.showTable = true;
+    }, 100);
+
   }
 
 }
+
 
 function createNewUser(id: number): UserData {
   const name =
