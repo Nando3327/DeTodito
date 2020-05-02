@@ -63,8 +63,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
     };
   }
 
-  searchDetails(): void {
-
+  searchDetails(item): void {
+    console.log(item);
   }
 
   deleteTransferAction(): void {
