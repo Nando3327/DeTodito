@@ -12,6 +12,16 @@
   width: 300px;
 }
 
+.imgLogo {
+  margin-top: 30%
+}
+
+@media screen and (min-width: 1200px) {
+  .imgLogo {
+    margin-top: 20%
+  }
+}
+
 @media screen and (max-width: 480px) {
   .sidenavWidth {
     width: 215px;
