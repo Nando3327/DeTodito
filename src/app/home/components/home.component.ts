@@ -7,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  loadComponent = false;
   constructor(
   ) {
   }
 
   ngOnInit(): void {
+  }
+
+  chargeComponent(): void{
+    this.loadComponent = true;
   }
 }

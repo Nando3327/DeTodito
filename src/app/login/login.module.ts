@@ -7,17 +7,20 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  imports: [DemoMaterialModule,
+  imports: [
+    DemoMaterialModule,
+    CommonModule,
     FormsModule,
     HttpClientModule,
     MatNativeDateModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FormlyModule.forRoot(),
-    FormlyMaterialModule,],
+    FormlyMaterialModule],
   declarations: [...LOGIN_COMPONENTS],
   entryComponents: [],
   exports: [...LOGIN_COMPONENTS],

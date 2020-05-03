@@ -18,6 +18,7 @@ export class LoginComponent implements OnInit {
   model: any;;
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[];
+  loadPage = false;
 
   constructor(private translate: TranslateService,
               private router: Router) {
@@ -26,13 +27,14 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loadLabels();
-    this.initForm();
   }
 
   loadLabels(): void {
     this.translate.get(['login', 'global']).subscribe(labels => {
       this.globalLabels = labels.global;
       this.labels = labels['login'];
+      this.loadPage = true;
+      this.initForm();
     });
   }
 

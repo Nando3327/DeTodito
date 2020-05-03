@@ -1,5 +1,9 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <button class="btn btn-primary" routerLink="/home/categories" routerLinkActive="active"> Balance</button>
+    <button class="btn btn-primary" routerLink="/home/categories" routerLinkActive="active" (click)="chargeComponent()"> Balance</button>
+    <button class="btn btn-primary" routerLink="/" routerLinkActive="active" (click)="chargeComponent()"> LogOut</button>
+  </div>
+  <div *ngIf="loadComponent">
+    <router-outlet></router-outlet>
   </div>
 </div>

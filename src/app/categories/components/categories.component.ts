@@ -123,7 +123,9 @@ export class CategoriesComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
     this.initGrid();
-    this.showTable = true;
+    setTimeout(_ => {
+      this.showTable = true;
+    }, 100);
     for (let i = 1; i <= 1; i++) {
       this.data.push(createNewUser(i));
     }

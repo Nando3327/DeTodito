@@ -16,7 +16,6 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginModule } from './login';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CategoriesModule } from './categories';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');

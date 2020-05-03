@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './home/components';
+import { LoginComponent } from './login/components';
 
 
 const routes: Route[] = [
@@ -26,7 +27,11 @@ const routes: Route[] = [
       },
     ]
   },
-  { path: '', redirectTo: '', pathMatch: 'full' }
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
