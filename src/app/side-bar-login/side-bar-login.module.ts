@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { LOGIN_COMPONENTS } from './components';
+import { SIDE_BAR_LOGIN_COMPONENTS } from './components';
 import { DemoMaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { CommonModule } from '@angular/common';
-import { SideBarLoginModule } from '../side-bar-login';
 
 
 @NgModule({
@@ -20,13 +19,12 @@ import { SideBarLoginModule } from '../side-bar-login';
     MatNativeDateModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    SideBarLoginModule,
     FormlyModule.forRoot(),
     FormlyMaterialModule],
-  declarations: [...LOGIN_COMPONENTS],
+  declarations: [...SIDE_BAR_LOGIN_COMPONENTS],
   entryComponents: [],
-  exports: [...LOGIN_COMPONENTS],
+  exports: [...SIDE_BAR_LOGIN_COMPONENTS],
   providers: []
 })
-export class LoginModule {
+export class SideBarLoginModule {
 }

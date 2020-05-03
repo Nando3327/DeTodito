@@ -52,6 +52,10 @@
     "addres2": "Edificio Catalina Plaza - Piso 6 Ofic. 603",
     "addres3": "Quito - Ecuador - EC170135",
     "aboutUs": "Estamos Ubicados en el mejor sector de Quito, en un edificio inteligente, con tecnología de punta, instalaciones modernas y parqueaderos para visitas",
-    "locationContact": "Ubicacion y contacto"
+    "locationContact": "Ubicacion y contacto",
+    "phoneNumber": "Teléfono:",
+    "phoneNumberValue": "+593 (02)60-10-799",
+    "email": "Email:",
+    "emailValue": "paola@cosarcotouring.com"
   }
 }

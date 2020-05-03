@@ -1,53 +1,7 @@
 <div class="container-fluid" *ngIf="loadPage">
-  <div class="row sidenav parallax-section">
-    <div class="col-md-12">
-      <img class="logoSize" src="http://cosarcotouring.com//img/CosarcoLogo.png">
-    </div>
-    <div class="col-md-12" style="padding-right: 0px;">
-      <hr class="u">
-      <br>
-      <hr class="d">
-    </div>
-    <div class="col-md-12 login-main-text">
-      <div>
-        <h2><strong>{{labels.locationContact}}</strong></h2>
-        <div class="clearfix">
-          <i class="fa fa-home fa-lg"></i>
-          <span>{{labels.addres}}<br>
-            {{labels.addres2}}<br>
-            {{labels.addres3}}
-          </span>
-        </div>
-        <div class="con-info clearfix">
-          <i class="fa fa-phone fa-lg"></i>
-          <span class="color">Teléfono: +593 (02)60-10-799</span>
-        </div>
-
-
-        <div class="con-info clearfix">
-          <i class="fa fa-envelope fa-lg"></i>
-          <span class="color">Email: paola@cosarcotouring.com</span>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="width: 100%;padding-top: 15px;">
-      <div class="col-lg-12 text-center">
-        <div class="twitter-bird">
-							<span>
-                <a href="https://www.facebook.com/Cosarco-Touring-303355106793032/" target="_blank"
-                   class="btn btn-link">
-                  <i class="fa fa-facebook fa-4x"></i></a>
-							</span>
-          <span>
-                <a href="https://twitter.com/amimorshed" target="_blank"
-                   class="btn btn-link"><i class="fa fa-twitter fa-4x"></i></a>
-							</span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-side-bar-login></app-side-bar-login>
   <div class="row main">
-    <div class="col-md-6 col-sm-12">
+    <div class="col-sm-12 col-md-10 col-lg-8">
       <div class="login-form">
         <h2>{{labels.loginHead}}</h2>
         <form [formGroup]="form" (ngSubmit)="moveNextEventPage()" style="box-shadow: none !important;">
