@@ -8,14 +8,18 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit{
   title = 'untitled';
-  initApp = false;
+  showLogin = false;
 
   constructor(private translate: TranslateService) {
   }
 
   ngOnInit(): void {
     this.translate.use('es').subscribe(_ => {
-      this.initApp = true;
+      this.showLogin = true;
     });
+  }
+
+  loginStatusAction(event): void {
+    this.showLogin = false;
   }
 }

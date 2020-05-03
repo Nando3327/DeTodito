@@ -1,4 +1,6 @@
-<div class="container-fluid" *ngIf="initApp">
-  <app-home></app-home>
+<div class="container-fluid" *ngIf="showLogin">
+  <app-login (loginStatus)="loginStatusAction($event)"></app-login>
 </div>
-<router-outlet></router-outlet>
+<div class="container-fluid" *ngIf="!showLogin">
+  <router-outlet></router-outlet>
+</div>

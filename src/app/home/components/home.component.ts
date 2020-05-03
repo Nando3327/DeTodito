@@ -22,10 +22,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
   constructor() {
   }
 
-  /**
-   * Set the paginator and sort after the view init since this component will
-   * be able to query its view for the initialized paginator and sort.
-   */
   ngAfterViewInit() {
   }
 
@@ -36,6 +32,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
         {field: 'name', name: 'name'},
         {field: 'progress', name: 'progress'},
         {field: 'id', name: 'id'},
+        {field: 'id23', name: 'campo nuevo'},
         {field: 'color', name: 'color'},
         {
           field: 'actions',
@@ -66,7 +63,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
           }
         }
       ],
-      selectField: true
+      //selectField: true
     };
   }
 
@@ -75,7 +72,11 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   deleteTransferAction(): void {
-
+    this.data.push(createNewUser(this.data.length + 1));
+    this.showTable = false;
+    setTimeout(_ => {
+      this.showTable = true;
+    }, 100);
   }
 
   initForm(): void {
@@ -104,6 +105,36 @@ export class HomeComponent implements OnInit, AfterViewInit {
             required: true,
           }
         },
+        {
+          key: 'text',
+          type: 'input',
+          className: 'col-md-6',
+          templateOptions: {
+            label: 'text',
+            placeholder: 'Enter email',
+            required: true,
+          }
+        },
+        {
+          key: 'text',
+          type: 'input',
+          className: 'col-md-6',
+          templateOptions: {
+            label: 'text',
+            placeholder: 'Enter email',
+            required: true,
+          }
+        },
+        {
+          key: 'email',
+          type: 'select',
+          className: 'col-md-12',
+          templateOptions: {
+            label: 'select address',
+            placeholder: 'select email',
+            required: true,
+          }
+        },
       ]
     }];
   }
@@ -115,12 +146,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.initForm();
     this.initGrid();
-    for (let i = 1; i <= 100; i++) {
+    this.showTable = true;
+    for (let i = 1; i <= 1; i++) {
       this.data.push(createNewUser(i));
     }
-    setTimeout(_ => {
-      this.showTable = true;
-    }, 100);
 
   }
 
