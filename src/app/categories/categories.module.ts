@@ -2,18 +2,23 @@ import { NgModule } from '@angular/core';
 import { CATEGORIES_COMPONENTS } from './components';
 import { DemoMaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
-
+import { DataTableModule } from '../data-table';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 @NgModule({
-  imports: [DemoMaterialModule,
+  imports: [
     FormsModule,
-    HttpClientModule,
     MatNativeDateModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    DemoMaterialModule,
+    DataTableModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,
+  ],
   declarations: [...CATEGORIES_COMPONENTS],
-  entryComponents: [],
+  entryComponents: [...CATEGORIES_COMPONENTS],
   exports: [...CATEGORIES_COMPONENTS],
   providers: []
 })

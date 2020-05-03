@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { HOME_COMPONENTS } from './components';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from '../material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from '../data-table';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
+import { CategoriesModule } from '../categories';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
-  imports: [BrowserModule,
-    BrowserAnimationsModule,
+  imports: [
     FormsModule,
-    HttpClientModule,
+    CommonModule,
     MatNativeDateModule,
     ReactiveFormsModule,
     DemoMaterialModule,
     DataTableModule,
+    CategoriesModule,
     FormlyModule.forRoot(),
-    FormlyMaterialModule,
+    FormlyMaterialModule
   ],
   declarations: [...HOME_COMPONENTS],
   entryComponents: [...HOME_COMPONENTS],
