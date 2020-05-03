@@ -20,10 +20,7 @@ import { DataTableOptionsModel } from './data-table-options.model';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { getWindowSize, isNullOrEmpty } from '../../generalFunctions/generalFunctions';
-
-
-// pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { getWindowSize, isNullOrEmpty } from '../../general-functions/general-functions';
 
 @Component({
   selector: 'app-data-table',
