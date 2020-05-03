@@ -35,7 +35,8 @@
         <div class="twitter-bird">
 							<span>
                 <a href="https://www.facebook.com/Cosarco-Touring-303355106793032/" target="_blank"
-                   class="btn btn-link"><i class="fa fa-facebook fa-4x"></i></a>
+                   class="btn btn-link">
+                  <i class="fa fa-facebook fa-4x"></i></a>
 							</span>
           <span>
                 <a href="https://twitter.com/amimorshed" target="_blank"
@@ -49,17 +50,10 @@
     <div class="col-md-6 col-sm-12">
       <div class="login-form">
         <h2>{{labels.loginHead}}</h2>
-        <form [formGroup]="loginForm">
-          <div class="form-group">
-            <label>{{labels.userName}}</label>
-            <input type="text" class="form-control" formControlName="username" placeholder="{{labels.userName}}">
-          </div>
-          <div class="form-group">
-            <label>{{labels.password}}</label>
-            <input type="password" class="form-control" formControlName="password" placeholder="{{labels.password}}">
-          </div>
-          <button class="btn btn-primary" (click)="moveNextEventPage()">{{labels.login}}</button>
-          <button type="submit" class="btn btn-secondary">{{labels.register}}</button>
+        <form [formGroup]="form" (ngSubmit)="moveNextEventPage()" style="box-shadow: none !important;">
+          <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+          <hr>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </form>
       </div>
     </div>

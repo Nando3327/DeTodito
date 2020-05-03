@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { DataTableOptionsModel } from '../../data-table/components';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { FormGroup } from '@angular/forms';
@@ -15,7 +15,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   tableOptions: DataTableOptionsModel;
 
   form = new FormGroup({});
-  model = { email: 'email@gmail.com' };
+  model: any;
+;
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[];
 
@@ -114,27 +115,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             placeholder: 'Enter email',
             required: true,
           }
-        },
-        {
-          key: 'text',
-          type: 'input',
-          className: 'col-md-6',
-          templateOptions: {
-            label: 'text',
-            placeholder: 'Enter email',
-            required: true,
-          }
-        },
-        {
-          key: 'email',
-          type: 'select',
-          className: 'col-md-12',
-          templateOptions: {
-            label: 'select address',
-            placeholder: 'select email',
-            required: true,
-          }
-        },
+        }
       ]
     }];
   }

@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   @Output() loginStatus: EventEmitter<any>;
-  MenuComponent = false;
-  sharedService: any;
-  users = [];
   labels: any;
   globalLabels: any;
-  loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
-  });
+  form = new FormGroup({});
+  model: any;;
+  options: FormlyFormOptions = {};
+  fields: FormlyFieldConfig[];
 
   constructor(private translate: TranslateService,
               private router: Router) {
@@ -28,6 +26,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loadLabels();
+    this.initForm();
   }
 
   loadLabels(): void {
@@ -37,10 +36,39 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  initForm(): void {
+    this.fields = [{
+      fieldGroupClassName: 'row',
+      key: 'formValuesAmountTransaction',
+      validators: {},
+      fieldGroup: [
+        {
+          key: 'user',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            label: this.labels.userName,
+            placeholder: this.labels.userNamePh,
+            required: true,
+          }
+        },
+        {
+          key: 'password',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            type: 'password',
+            label: this.labels.password,
+            placeholder: this.labels.passwordPh,
+            required: true,
+          }
+        }
+      ]
+    }];
+  }
+
   moveNextEventPage() {
-    // this.users = this.sharedService.getUserData();
-    this.MenuComponent = !this.MenuComponent;
     this.router.navigate(['/home']);
-    this.loginStatus.emit(this.MenuComponent);
+    this.loginStatus.emit(true);
   }
 }

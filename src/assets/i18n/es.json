@@ -42,7 +42,9 @@
   },
   "login": {
     "userName": "Usuario",
-    "password": "Password",
+    "userNamePh": "Ingrese su nombre de usuario",
+    "password": "Contraseña",
+    "passwordPh": "Ingrese su contraseña",
     "login": "Ingresar",
     "register": "Regístrate",
     "loginHead": "Iniciar Sesión",

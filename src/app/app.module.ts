@@ -15,6 +15,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginModule } from './login';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');
@@ -35,6 +36,7 @@ export function createTranslateLoader(http: HttpClient) {
     DemoMaterialModule,
     LoginModule,
     HomeModule,
+    FontAwesomeModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

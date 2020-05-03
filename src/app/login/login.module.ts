@@ -4,6 +4,9 @@ import { DemoMaterialModule } from '../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormlyModule } from '@ngx-formly/core';
+import { FormlyMaterialModule } from '@ngx-formly/material';
 
 
 @NgModule({
@@ -11,7 +14,10 @@ import { MatNativeDateModule } from '@angular/material/core';
     FormsModule,
     HttpClientModule,
     MatNativeDateModule,
-    ReactiveFormsModule],
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormlyModule.forRoot(),
+    FormlyMaterialModule,],
   declarations: [...LOGIN_COMPONENTS],
   entryComponents: [],
   exports: [...LOGIN_COMPONENTS],
