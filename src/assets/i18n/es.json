@@ -7,7 +7,28 @@
       "fieldsRequired": "Por favor complete los campos obligatorios para continuar"
     },
     "buttons": {
-      "search": "Buscar"
+      "search": "Buscar",
+      "back": "Regresar",
+      "confirm": "Confirmar",
+      "cancel": "Cancelar",
+      "add": "Agregar",
+      "new": "Nuevo",
+      "yes": "Si",
+      "accept": "Aceptar",
+      "update": "Actualizar",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "deleteAll": "Eliminar todos",
+      "actions": "Acciones",
+      "print": "Imprimir",
+      "next": "Siguiente",
+      "previous": "Anterior",
+      "receipt": "Comprobante",
+      "review": "Revisar"
+    },
+    "dialog": {
+      "dearUser": "Estimado cliente",
+      "safeExit": "¿Esta seguro que desea salir del sistema?"
     }
   },
   "table": {

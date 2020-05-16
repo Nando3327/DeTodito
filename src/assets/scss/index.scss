@@ -83,15 +83,27 @@ i {
 }
 
 .btn-secondary {
-  color: var(--app-color-secondary);
+  color: var(--app-color-primary-tint);
   background-color: var(--app-color-secondary);
-  border-color: var(--app-color-primary-tint);
+  border-color: var(--app-color-secondary);
 }
 
 .btn-secondary:hover {
   color: var(--app-color-primary-tint);
   background-color: var(--app-color-primary);
   border-color: var(--app-color-primary);
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active, .show > .btn-secondary.dropdown-toggle {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-primary);
+  border-color: var(--app-color-primary);
+}
+
+.btn-secondary:focus, .btn-secondary.focus {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-secondary);
+  border-color: var(--app-color-secondary);
 }
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {

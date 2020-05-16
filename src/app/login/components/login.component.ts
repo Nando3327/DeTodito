@@ -1,9 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { LoginService } from '../login.service';
+import { DialogBuildService } from '../../dialog/components';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private translate: TranslateService,
               private router: Router,
-              private loginService: LoginService) {
+              private loginService: LoginService,
+              private dialog: DialogBuildService) {
     this.loginStatus = new EventEmitter();
   }
 
@@ -83,7 +85,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
         this.loginStatus.emit(true);
       } else {
-
+        this.dialog.buildDialog({
+          message: res.message,
+        });
       }
     }, error => {
       console.log(error);
