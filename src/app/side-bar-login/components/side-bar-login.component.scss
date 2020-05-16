@@ -13,8 +13,7 @@
   padding: 0px 10px;
 }
 .logoSize{
-  margin-left: 30px;
-  margin-bottom: 10px;
+  width: 100%;
 }
 
 @media screen and (max-height: 450px) {
@@ -74,19 +73,6 @@
 .btn-black{
   background-color: #000 !important;
   color: #fff;
-}
-
-hr.u {
-  border: 15px solid #52BBD5;
-  border-top-width: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-}
-
-hr.d {
-  border: 15px solid #d5781a;
-  border-top-width: 0px;
-  margin-top: 0px;
 }
 
 /*=================================================================

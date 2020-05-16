@@ -11,6 +11,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginModule } from './login';
+import { AppService } from './app.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');
@@ -45,6 +46,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
+    AppService
   ],
   bootstrap: [AppComponent]
 })
