@@ -1,5 +1,21 @@
 @import 'variables';
 
+////////////////////////////////////////////LOGIN STYLES/////////////////////////////////////
+
+.twitter-bird span {
+  border: 2px solid var(--app-color-secondary);
+  border-radius: 50px;
+  color: var(--app-color-secondary);
+  display: inline-block;
+  margin-bottom: 50px;
+  height: 90px;
+  width: 90px;
+}
+
+.twitter-bird span i {
+  line-height: 90px;
+}
+
 ////////////////////////////////////////////MENU STYLES/////////////////////////////////////
 .mat-toolbar.mat-primary {
   background-color: var(--app-color-secondary);
@@ -77,6 +93,14 @@ span > label > mat-label {
 
 .mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
   color: var(--app-color-primary);
+}
+
+.btn-link {
+  color: var(--app-color-primary);
+}
+
+.btn-link:hover {
+  color: var(--app-color-secondary);
 }
 
 a.btn-secondary {
