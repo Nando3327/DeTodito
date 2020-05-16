@@ -11,7 +11,7 @@ export class DialogBuildService {
 
   buildDialog(dialogOptions: DialogModel, configuration: MatDialogConfig = {}) {
     if (dialogOptions.type === 'token' || dialogOptions.type === 'session') {
-      configuration.id = 'easy-token-id';
+      configuration.id = 'app-token-id';
       configuration.disableClose = true;
     } else if (dialogOptions.type === 'custom' && dialogOptions.disableClose) {
       configuration.id = dialogOptions.id || 'custom-component-id';
