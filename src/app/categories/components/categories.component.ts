@@ -80,7 +80,6 @@ export class CategoriesComponent implements OnInit {
     this.fields = [{
       fieldGroupClassName: 'row',
       key: 'formValuesAmountTransaction',
-      validators: {},
       fieldGroup: [
         {
           key: 'email',

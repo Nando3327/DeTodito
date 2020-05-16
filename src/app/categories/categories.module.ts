@@ -25,7 +25,7 @@ const routes: Route[] = [
     ReactiveFormsModule,
     DemoMaterialModule,
     DataTableModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forChild(),
     FormlyMaterialModule,
     RouterModule.forChild(routes)
   ],

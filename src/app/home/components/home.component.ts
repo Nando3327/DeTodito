@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadComponent = false;
   mobileQuery: MediaQueryList;
   fillerNav: Array<any>;
+  title: string;
   private _mobileQueryListener: () => void;
 
   constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
@@ -30,14 +31,16 @@ export class HomeComponent implements OnInit, OnDestroy {
         text: 'LogOut'
       }
     ];
+    this.title = '';
   }
 
   ngOnDestroy(): void {
     this.mobileQuery.removeListener(this._mobileQueryListener);
   }
 
-  chargeComponent(snav): void {
+  chargeComponent(snav, nav): void {
     this.loadComponent = true;
+    this.title = nav.text;
     snav.toggle();
   }
 }

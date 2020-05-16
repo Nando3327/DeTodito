@@ -1,5 +1,30 @@
 @import 'variables';
 
+////////////////////////////////////////////MENU STYLES/////////////////////////////////////
+.mat-toolbar.mat-primary {
+  background-color: var(--app-color-secondary);
+}
+
+////////////////////////////////////////////TABLE STYLES/////////////////////////////////////
+mat-header-cell > div > button > span {
+  color: var(--app-color-secondary);
+}
+
+.mat-table__wrapper--dashboard .mat-table {
+  min-width: 600px !important;
+  width: 100% !important;
+}
+
+button.mat-menu-item {
+  color: var(--app-color-primary);
+}
+
+////////////////////////////////////////////GENERAL STYLES/////////////////////////////////////
+span > label > mat-label {
+  color: var(--app-color-primary);
+}
+
+
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
   display: none !important;
@@ -20,13 +45,41 @@
   border-color: var(--app-color-primary);
 }
 
-.btn-cancel {
-  color: var(--app-color-primary);
-  background-color: var(--app-color-primary-tint);
+.btn-primary:hover {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-secondary);
+  border-color: var(--app-color-secondary);
+}
+
+.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-primary);
+  border-color: var(--app-color-primary);
+}
+
+.btn-primary.focus, .btn-primary:focus {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-primary);
+  border-color: var(--app-color-primary);
+}
+
+.btn-secondary {
+  color: var(--app-color-secondary);
+  background-color: var(--app-color-secondary);
   border-color: var(--app-color-primary-tint);
 }
 
-a.btn-cancel {
+.btn-secondary:hover {
+  color: var(--app-color-primary-tint);
+  background-color: var(--app-color-primary);
+  border-color: var(--app-color-primary);
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: var(--app-color-primary);
+}
+
+a.btn-secondary {
   color: var(--app-color-primary);
   background-color: var(--ion-color-quaternary-shade);
   border-color: var(--ion-color-quaternary-shade);
