@@ -1,5 +1,8 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
+import { Router } from '@angular/router';
+import { DialogBuildService } from '../../dialog/components';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +15,24 @@ export class HomeComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   fillerNav: Array<any>;
   extraOptions: Array<any>;
+  labels: any;
+  globalLabels: any;
   title: string;
+  loadPage = false;
   private _mobileQueryListener: () => void;
 
-  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+  constructor(private changeDetectorRef: ChangeDetectorRef,
+              private media: MediaMatcher,
+              private dialog: DialogBuildService,
+              private router: Router,
+              private translate: TranslateService,) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener);
+    this.mobileQuery.addListener(this._mobileQueryListener,);
   }
 
   ngOnInit(): void {
+    this.loadLabels();
     this.fillerNav = [
       {
         url: '/home/categories',
@@ -31,8 +42,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.title = '';
     this.extraOptions = [{
       url: '/',
-      name: 'LogOut'
+      name: 'LogOut',
+      handler: this.logOut.bind(this)
     }];
+  }
+
+  loadLabels(): void {
+    this.translate.get(['home', 'global']).subscribe(labels => {
+      this.globalLabels = labels.global;
+      this.labels = labels['home'];
+      this.loadPage = true;
+    });
+  }
+
+  logOut() {
+    this.dialog.buildDialog({
+      type: 'confirm',
+      message: this.labels.logOut,
+      options: {
+        buttons: [
+          {
+            label: this.globalLabels.buttons.confirm,
+            handler: () => {
+              this.router.navigate(['/']);
+            }
+          }
+        ]
+      }
+    });
   }
 
   ngOnDestroy(): void {

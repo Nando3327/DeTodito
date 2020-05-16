@@ -86,5 +86,8 @@
     "phoneNumberValue": "+593 (02)648776",
     "email": "Email:",
     "emailValue": "fernando@detodito.com"
+  },
+  "home": {
+    "logOut": "Esta seguro que desea salir del sistema?"
   }
 }
