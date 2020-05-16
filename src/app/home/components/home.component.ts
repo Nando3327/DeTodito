@@ -11,6 +11,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   loadComponent = false;
   mobileQuery: MediaQueryList;
   fillerNav: Array<any>;
+  extraOptions: Array<any>;
   title: string;
   private _mobileQueryListener: () => void;
 
@@ -25,13 +26,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       {
         url: '/home/categories',
         text: 'Categories'
-      },
-      {
-        url: '/',
-        text: 'LogOut'
       }
     ];
     this.title = '';
+    this.extraOptions = [{
+      url: '/',
+      name: 'LogOut'
+    }];
   }
 
   ngOnDestroy(): void {

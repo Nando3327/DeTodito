@@ -1,7 +1,23 @@
 <div class="example-container" [class.example-is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="example-toolbar">
-    <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+    <button mat-icon-button (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <h1 class="example-app-name">{{title}}</h1>
+    <div class="extraOptionsClass">
+      <button mat-icon-button [matMenuTriggerFor]="menuOptions">
+        <mat-icon>keyboard_arrow_down</mat-icon>
+      </button>
+      <mat-menu #menuOptions="matMenu">
+        <button
+          *ngFor="let button of extraOptions"
+          mat-menu-item
+          (click)="button.handler()"
+        >
+          {{ button.name }}
+        </button>
+      </mat-menu>
+    </div>
   </mat-toolbar>
 
   <mat-sidenav-container class="example-sidenav-container"

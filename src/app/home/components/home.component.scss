@@ -12,6 +12,11 @@
   width: 300px;
 }
 
+.extraOptionsClass {
+  width: 100%;
+  text-align: right;
+}
+
 @media screen and (max-width: 480px) {
   .sidenavWidth {
     width: 215px;
