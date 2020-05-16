@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -15,13 +16,14 @@ export class LoginComponent implements OnInit {
   labels: any;
   globalLabels: any;
   form = new FormGroup({});
-  model: any;;
+  model: any = {};
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[];
   loadPage = false;
 
   constructor(private translate: TranslateService,
-              private router: Router) {
+              private router: Router,
+              private loginService: LoginService) {
     this.loginStatus = new EventEmitter();
   }
 
@@ -41,7 +43,7 @@ export class LoginComponent implements OnInit {
   initForm(): void {
     this.fields = [{
       fieldGroupClassName: 'row',
-      key: 'formValuesAmountTransaction',
+      key: 'formLogin',
       validators: {},
       fieldGroup: [
         {
@@ -70,7 +72,21 @@ export class LoginComponent implements OnInit {
   }
 
   moveNextEventPage() {
-    this.router.navigate(['/home']);
-    this.loginStatus.emit(true);
+    if (!this.form.valid) {
+      return;
+    }
+    this.loginService.login({
+      name: this.model.formLogin.user,
+      password: this.model.formLogin.password
+    }).subscribe(res => {
+      if (res.code === 200) {
+        this.router.navigate(['/home']);
+        this.loginStatus.emit(true);
+      } else {
+
+      }
+    }, error => {
+      console.log(error);
+    });
   }
 }

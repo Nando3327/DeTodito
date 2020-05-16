@@ -9,6 +9,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { CommonModule } from '@angular/common';
 import { SideBarLoginModule } from '../side-bar-login';
+import { LoginService } from './login.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { SideBarLoginModule } from '../side-bar-login';
   declarations: [...LOGIN_COMPONENTS],
   entryComponents: [],
   exports: [...LOGIN_COMPONENTS],
-  providers: []
+  providers: [LoginService]
 })
 export class LoginModule {
 }
