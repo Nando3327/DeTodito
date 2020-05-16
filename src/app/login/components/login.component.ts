@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { LoginService } from '../login.service';
 import { DialogBuildService } from '../../dialog/components';
+import { SpinnerModel } from '../../spinner/models';
+import { SpinnerService } from '../../spinner/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(private translate: TranslateService,
               private router: Router,
               private loginService: LoginService,
-              private dialog: DialogBuildService) {
+              private dialog: DialogBuildService,
+              private spinner: SpinnerService) {
     this.loginStatus = new EventEmitter();
   }
 
@@ -77,10 +80,12 @@ export class LoginComponent implements OnInit {
     if (!this.form.valid) {
       return;
     }
+    this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
     this.loginService.login({
       name: this.model.formLogin.user,
       password: this.model.formLogin.password
     }).subscribe(res => {
+      this.spinner.hide();
       if (res.code === 200) {
         this.router.navigate(['/home']);
         this.loginStatus.emit(true);

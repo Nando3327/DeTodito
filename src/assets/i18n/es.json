@@ -29,6 +29,14 @@
     "dialog": {
       "dearUser": "Estimado cliente",
       "safeExit": "¿Esta seguro que desea salir del sistema?"
+    },
+    "spinner": {
+      "loading": "Cargando...",
+      "changingUser": "Cambiando usuario...",
+      "validating": "Validando...",
+      "validatingUser": "Validando usuario...",
+      "validatingAccess": "Validando acceso...",
+      "authenticating": "Autenticando..."
     }
   },
   "table": {

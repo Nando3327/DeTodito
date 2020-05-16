@@ -13,6 +13,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { LoginModule } from './login';
 import { AppService } from './app.service';
 import { DialogModule } from './dialog';
+import { SpinnerModule } from './spinner';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');
@@ -44,7 +45,13 @@ export function createTranslateLoader(http: HttpClient) {
       ],
     }),
     FormlyMaterialModule,
-    DialogModule
+    DialogModule,
+    SpinnerModule.forRoot({
+      type: 'ball-spin',
+      size: 'medium',
+      bdColor: 'rgba(0, 0, 0, 0.6)',
+      color: 'white'
+    })
   ],
   exports: [DialogModule],
   providers: [
