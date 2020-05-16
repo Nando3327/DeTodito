@@ -7,7 +7,15 @@
         <form [formGroup]="form" (ngSubmit)="moveNextEventPage()" style="box-shadow: none !important;">
           <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
           <hr>
-          <button type="submit" class="btn btn-primary">{{labels.login}}</button>
+          <div class="row">
+            <div class="col text-right">
+              <button type="submit" class="btn btn-primary">{{labels.login}}</button>
+            </div>
+            <div class="col text-left">
+              <button type="button" class="btn btn-primary">{{labels.register}}</button>
+            </div>
+          </div>
+          <br/>
         </form>
       </div>
     </div>
