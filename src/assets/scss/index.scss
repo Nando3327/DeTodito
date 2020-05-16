@@ -40,6 +40,9 @@ span > label > mat-label {
   color: var(--app-color-primary);
 }
 
+i {
+  color: var(--app-color-primary);
+}
 
 // hide bootstrap dropdown arrow globally
 .dropdown-toggle::after {
