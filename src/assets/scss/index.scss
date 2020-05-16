@@ -16,6 +16,10 @@
   line-height: 90px;
 }
 
+.twitter-bird span i:hover {
+  color: var(--app-color-secondary);
+}
+
 ////////////////////////////////////////////MENU STYLES/////////////////////////////////////
 .mat-toolbar.mat-primary {
   background-color: var(--app-color-secondary);
@@ -132,12 +136,12 @@ a.btn-secondary {
 }
 
 // Striped table
-.mat-row:nth-child(even){
+.mat-row:nth-child(even) {
   background-color: var(--app-color-table-strip-even);
 }
 
 // Striped table
-.mat-row:nth-child(odd){
+.mat-row:nth-child(odd) {
   background-color: var(--app-color-table-strip-odd);
 }
 
