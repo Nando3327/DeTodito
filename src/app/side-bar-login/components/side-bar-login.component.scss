@@ -1,4 +1,4 @@
-.main-head{
+.main-head {
   height: 150px;
   background: #FFF;
 }
@@ -12,30 +12,52 @@
 .main {
   padding: 0px 10px;
 }
-.logoSize{
-  width: 100%;
+
+.logoSize {
+  margin-left: 20%;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+@media screen and (max-width: 1300px) {
+  .logoSize {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
+  .sidenav {
+    padding-top: 15px;
+  }
+
+  .logoSize {
+    margin-left: 0;
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 450px) {
-  .login-form{
+  .logoSize {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .login-form {
     margin-top: 10%;
   }
 
-  .register-form{
+  .register-form {
     margin-top: 10%;
   }
 }
 
-@media screen and (min-width: 768px){
-  .main{
+@media screen and (min-width: 768px) {
+  .main {
     margin-left: 40%;
   }
 
-  .sidenav{
+  .sidenav {
     width: 30%;
     position: fixed;
     z-index: 1;
@@ -43,16 +65,16 @@
     left: 0;
   }
 
-  .login-form{
+  .login-form {
     margin-top: 80%;
   }
 
-  .register-form{
+  .register-form {
     margin-top: 20%;
   }
 }
 
-.login-main-text{
+.login-main-text {
   padding-top: 35%;
   padding-bottom: 35%;
   padding-left: 10%;
@@ -66,11 +88,11 @@
   padding-left: 0;
 }
 
-.login-main-text h2{
+.login-main-text h2 {
   font-weight: 300;
 }
 
-.btn-black{
+.btn-black {
   background-color: #000 !important;
   color: #fff;
 }
@@ -106,7 +128,7 @@
   color: #52BBD5;
 }
 
-.imageSize{
+.imageSize {
   height: 50%;
 }
 
@@ -117,7 +139,7 @@
   background-size: cover;
 }
 
-.backgroundLogin{
+.backgroundLogin {
   background-position: 50%;
   position: relative;
   bottom: -105px;

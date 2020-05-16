@@ -16,8 +16,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-      <div *ngIf="!loadComponent" class="container text-center imgLogo">
-        <img src="http://cosarcotouring.com//img/CosarcoLogo.png">
+      <div *ngIf="!loadComponent" class="container text-center">
+        <img class="imgLogo" src="../../../assets/img/logo.png">
       </div>
       <div *ngIf="loadComponent" class="container-fluid">
         <router-outlet></router-outlet>
