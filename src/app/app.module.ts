@@ -14,6 +14,7 @@ import { LoginModule } from './login';
 import { AppService } from './app.service';
 import { DialogModule } from './dialog';
 import { SpinnerModule } from './spinner';
+import { FormsValidatorService } from './services/validator.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, `../assets/i18n/`, '.json');
@@ -42,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
         {name: 'required', message: 'Campo obligatorio'},
         {name: 'email', message: 'Email incorrecto'},
         {name: 'invalidDateFormat', message: 'Formato fecha invalido'},
+        {name: 'ConfirmPassword', message: 'Contraseñas no coinciden'}
       ],
     }),
     FormlyMaterialModule,
@@ -56,7 +58,7 @@ export function createTranslateLoader(http: HttpClient) {
   exports: [DialogModule],
   providers: [
     { provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } },
-    AppService
+    AppService, FormsValidatorService
   ],
   bootstrap: [AppComponent]
 })

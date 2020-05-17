@@ -85,7 +85,23 @@
     "phoneNumber": "Teléfono:",
     "phoneNumberValue": "+593 (02)648776",
     "email": "Email:",
-    "emailValue": "fernando@detodito.com"
+    "emailValue": "fernando@detodito.com",
+    "registerHead": "Regístrate",
+    "registerLabels": {
+      "name": "Nombre(s):",
+      "namePh": "Ingrese su nombre completo",
+      "lastName": "Apellidos:",
+      "lastNamePh": "Ingrese sus apellidos",
+      "password": "Contraseña:",
+      "passwordPh": "Ingrese su contraseña",
+      "confirmPassword": "Confirmación de contraseña:",
+      "confirmPasswordPh": "Confirme su contraseña",
+      "email": "Correo:",
+      "emailPh": "Ingrese su dirección de correo"
+    },
+    "messages": {
+      "wrongUserPassword": "Usuario y/o contraseña incorrecta"
+    }
   },
   "home": {
     "logOut": "Esta seguro que desea salir del sistema?"

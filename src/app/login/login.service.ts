@@ -21,4 +21,15 @@ export class LoginService {
       })
     );
   }
+
+  public register(params): Observable<any> {
+    return this.http.post('http://localhost:8001/register', params, {}).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
 }

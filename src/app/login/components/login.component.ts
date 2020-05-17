@@ -7,6 +7,8 @@ import { LoginService } from '../login.service';
 import { DialogBuildService } from '../../dialog/components';
 import { SpinnerModel } from '../../spinner/models';
 import { SpinnerService } from '../../spinner/services/spinner.service';
+import { LoginMode } from '../models/login.model';
+import { FormsValidatorService } from '../../services/validator.service';
 
 @Component({
   selector: 'app-login',
@@ -22,13 +24,18 @@ export class LoginComponent implements OnInit {
   model: any = {};
   options: FormlyFormOptions = {};
   fields: FormlyFieldConfig[];
+  formRegister = new FormGroup({});
+  modelRegister: any = {};
+  fieldsRegister: FormlyFieldConfig[];
   loadPage = false;
+  mode: string;
 
   constructor(private translate: TranslateService,
               private router: Router,
               private loginService: LoginService,
               private dialog: DialogBuildService,
-              private spinner: SpinnerService) {
+              private spinner: SpinnerService,
+              private validators: FormsValidatorService) {
     this.loginStatus = new EventEmitter();
   }
 
@@ -41,6 +48,7 @@ export class LoginComponent implements OnInit {
       this.globalLabels = labels.global;
       this.labels = labels['login'];
       this.loadPage = true;
+      this.mode = LoginMode.login;
       this.initForm();
     });
   }
@@ -74,6 +82,71 @@ export class LoginComponent implements OnInit {
         }
       ]
     }];
+    this.fieldsRegister = [{
+      fieldGroupClassName: 'row',
+      key: 'formRegister',
+      validators: {
+        validation: [this.validators.validateConfirmPassword]
+      },
+      fieldGroup: [
+        {
+          key: 'user',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            label: this.labels.registerLabels.name,
+            placeholder: this.labels.registerLabels.namePh,
+            required: true,
+          }
+        },
+        {
+          key: 'lastName',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            label: this.labels.registerLabels.lastName,
+            placeholder: this.labels.registerLabels.lastNamePh,
+            required: true,
+          }
+        },
+        {
+          key: 'password',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            type: 'password',
+            label: this.labels.registerLabels.password,
+            placeholder: this.labels.registerLabels.passwordPh,
+            required: true,
+          }
+        },
+        {
+          key: 'passwordConfirm',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            type: 'password',
+            label: this.labels.registerLabels.confirmPassword,
+            placeholder: this.labels.registerLabels.confirmPasswordPh,
+            required: true,
+          }
+        },
+        {
+          key: 'email',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            type: 'email',
+            label: this.labels.registerLabels.email,
+            placeholder: this.labels.registerLabels.emailPh,
+            required: true,
+          },
+          validators: {
+            validation: [this.validators.emailValidator]
+          },
+        }
+      ]
+    }];
   }
 
   moveNextEventPage() {
@@ -91,11 +164,61 @@ export class LoginComponent implements OnInit {
         this.loginStatus.emit(true);
       } else {
         this.dialog.buildDialog({
-          message: res.message,
+          message: this.labels.messages.wrongUserPassword,
         });
       }
     }, error => {
+      this.spinner.hide();
+      this.dialog.buildDialog({
+        message: this.globalLabels.errors.genericErrorMessage,
+      });
       console.log(error);
     });
+  }
+
+  register() {
+    if (!this.formRegister.valid) {
+      return;
+    }
+    if (this.modelRegister.formRegister.password !== this.modelRegister.formRegister.passwordConfirm) {
+      return;
+    }
+    this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
+    this.loginService.register({
+      name: this.modelRegister.formRegister.user,
+      lastName: this.modelRegister.formRegister.user,
+      password: this.modelRegister.formRegister.password,
+      email: this.modelRegister.formRegister.email,
+    }).subscribe(res => {
+      this.spinner.hide();
+      if (res.code === 200) {
+        this.router.navigate(['/home']);
+        this.loginStatus.emit(true);
+      } else {
+        this.dialog.buildDialog({
+          message: this.labels.messages.wrongUserPassword,
+        });
+      }
+    }, error => {
+      this.spinner.hide();
+      this.dialog.buildDialog({
+        message: this.globalLabels.errors.genericErrorMessage,
+      });
+      console.log(error);
+    });
+  }
+
+  goTo(mode): void {
+    switch (mode) {
+      case LoginMode.login:
+        break;
+      case LoginMode.forgetPassword:
+        break;
+      case LoginMode.forgetUser:
+        break;
+      case LoginMode.register:
+        break;
+    }
+    this.mode = mode;
   }
 }

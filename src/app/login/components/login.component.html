@@ -2,7 +2,7 @@
   <app-side-bar-login></app-side-bar-login>
   <div class="row main">
     <div class="col-sm-12 col-md-10 col-lg-8">
-      <div class="login-form">
+      <div class="login-form" *ngIf="mode === 'login'">
         <h2>{{labels.loginHead}}</h2>
         <form [formGroup]="form" (ngSubmit)="moveNextEventPage()" style="box-shadow: none !important;">
           <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
@@ -12,7 +12,23 @@
               <button type="submit" class="btn btn-primary">{{labels.login}}</button>
             </div>
             <div class="col text-left">
-              <button type="button" class="btn btn-primary">{{labels.register}}</button>
+              <button type="button" class="btn btn-primary" (click)="goTo('register')">{{labels.register}}</button>
+            </div>
+          </div>
+          <br/>
+        </form>
+      </div>
+      <div class="register-form" *ngIf="mode === 'register'">
+        <h2>{{labels.registerHead}}</h2>
+        <form [formGroup]="form" (ngSubmit)="register()" style="box-shadow: none !important;">
+          <formly-form [form]="formRegister" [fields]="fieldsRegister" [model]="modelRegister"></formly-form>
+          <hr>
+          <div class="row">
+            <div class="col text-right">
+              <button type="button" class="btn btn-secondary" (click)="goTo('login')">{{globalLabels.buttons.back}}</button>
+            </div>
+            <div class="col text-left">
+              <button type="submit" class="btn btn-primary">{{labels.register}}</button>
             </div>
           </div>
           <br/>
