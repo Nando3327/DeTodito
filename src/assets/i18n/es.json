@@ -100,7 +100,9 @@
       "emailPh": "Ingrese su dirección de correo"
     },
     "messages": {
-      "wrongUserPassword": "Usuario y/o contraseña incorrecta"
+      "wrongUserPassword": "Usuario y/o contraseña incorrecta",
+      "emailRegisterAlready": "Correo ya registrado en el sistema",
+      "errorOnRegister": "No se pudo registrar su usuario. por favor reintente"
     }
   },
   "home": {

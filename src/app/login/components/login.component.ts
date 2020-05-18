@@ -195,9 +195,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home']);
         this.loginStatus.emit(true);
       } else {
-        this.dialog.buildDialog({
-          message: this.labels.messages.wrongUserPassword,
-        });
+        this.showRegisterError(res.code);
       }
     }, error => {
       this.spinner.hide();
@@ -206,6 +204,20 @@ export class LoginComponent implements OnInit {
       });
       console.log(error);
     });
+  }
+
+  showRegisterError(code): void {
+    switch (code) {
+      case 9000:
+        this.dialog.buildDialog({
+          message: this.labels.messages.emailRegisterAlready,
+        });
+        break;
+      default:
+        this.dialog.buildDialog({
+          message: this.labels.messages.errorOnRegister,
+        });
+    }
   }
 
   goTo(mode): void {
