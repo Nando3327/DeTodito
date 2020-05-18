@@ -70,9 +70,9 @@
     "RANGE_PAGE_LABEL_2": "{{startIndex}} - {{endIndex}} de {{length}}"
   },
   "login": {
-    "userName": "Usuario",
-    "userNamePh": "Ingrese su nombre de usuario",
-    "password": "Contraseña",
+    "userName": "Usuario o correo electrónico:",
+    "userNamePh": "Ingrese su nombre de usuario o correo electrónico",
+    "password": "Contraseña:",
     "passwordPh": "Ingrese su contraseña",
     "login": "Ingresar",
     "register": "Regístrate",
