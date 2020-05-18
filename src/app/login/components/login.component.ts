@@ -192,8 +192,10 @@ export class LoginComponent implements OnInit {
     }).subscribe(res => {
       this.spinner.hide();
       if (res.code === 200) {
-        this.router.navigate(['/home']);
-        this.loginStatus.emit(true);
+        this.dialog.buildDialog({
+          message: this.labels.messages.userRegister,
+        });
+        this.goTo(LoginMode.login);
       } else {
         this.showRegisterError(res.code);
       }
