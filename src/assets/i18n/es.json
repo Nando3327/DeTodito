@@ -87,6 +87,9 @@
     "email": "Email:",
     "emailValue": "fernando@detodito.com",
     "registerHead": "Regístrate",
+    "forgetUser": "Olvidaste tu usuario?",
+    "forgetPassword": "Olvidaste tu contraseña?",
+    "restore": "Recuperar",
     "registerLabels": {
       "name": "Nombre(s):",
       "namePh": "Ingrese su nombre completo",

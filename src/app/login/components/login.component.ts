@@ -9,6 +9,7 @@ import { SpinnerModel } from '../../spinner/models';
 import { SpinnerService } from '../../spinner/services/spinner.service';
 import { LoginMode } from '../models/login.model';
 import { FormsValidatorService } from '../../services/validator.service';
+import { MethodsNames } from '../../models/methods.model';
 
 @Component({
   selector: 'app-login',
@@ -27,6 +28,9 @@ export class LoginComponent implements OnInit {
   formRegister = new FormGroup({});
   modelRegister: any = {};
   fieldsRegister: FormlyFieldConfig[];
+  formRestore = new FormGroup({});
+  modelRestore: any = {};
+  fieldsRestore: FormlyFieldConfig[];
   loadPage = false;
   mode: string;
 
@@ -147,6 +151,26 @@ export class LoginComponent implements OnInit {
         }
       ]
     }];
+    this.fieldsRestore = [{
+      fieldGroupClassName: 'row',
+      key: 'formRestore',
+      fieldGroup: [
+        {
+          key: 'email',
+          type: 'input',
+          className: 'col-sm-12',
+          templateOptions: {
+            type: 'email',
+            label: this.labels.registerLabels.email,
+            placeholder: this.labels.registerLabels.emailPh,
+            required: true,
+          },
+          validators: {
+            validation: [this.validators.emailValidator]
+          },
+        }
+      ]
+    }];
   }
 
   moveNextEventPage() {
@@ -167,12 +191,11 @@ export class LoginComponent implements OnInit {
           message: this.labels.messages.wrongUserPassword,
         });
       }
-    }, error => {
+    }, _ => {
       this.spinner.hide();
       this.dialog.buildDialog({
         message: this.globalLabels.errors.genericErrorMessage,
       });
-      console.log(error);
     });
   }
 
@@ -199,12 +222,33 @@ export class LoginComponent implements OnInit {
       } else {
         this.showRegisterError(res.code);
       }
-    }, error => {
+    }, _ => {
       this.spinner.hide();
       this.dialog.buildDialog({
         message: this.globalLabels.errors.genericErrorMessage,
       });
-      console.log(error);
+    });
+  }
+
+  restore(restoreType) {
+    if (!this.formRestore.valid) {
+      return;
+    }
+    this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
+    this.loginService.restore({
+      method: (restoreType === LoginMode.forgetUser) ? MethodsNames.forgetUser : MethodsNames.forgetPassword,
+      mail: this.modelRestore.formRestore.email
+    }).subscribe(res => {
+      this.spinner.hide();
+      this.dialog.buildDialog({
+        message: this.labels.messages.userRegister,
+      });
+      this.goTo(LoginMode.login);
+    }, _ => {
+      this.spinner.hide();
+      this.dialog.buildDialog({
+        message: this.globalLabels.errors.genericErrorMessage,
+      });
     });
   }
 

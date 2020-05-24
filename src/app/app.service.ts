@@ -16,7 +16,7 @@ export class AppService {
         if (res && res.code === 200) {
           return res.data;
         }
-        return throwError('');
+        throw throwError(res.message);
       }),
       catchError(err => {
         return throwError(err);

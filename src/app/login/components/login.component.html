@@ -15,6 +15,15 @@
               <button type="button" class="btn btn-primary" (click)="goTo('register')">{{labels.register}}</button>
             </div>
           </div>
+          <hr>
+          <div class="row">
+            <div class="col">
+              <a type="button" (click)="goTo('forgetUser')">{{labels.forgetUser}}</a>
+            </div>
+            <div class="col text-right">
+              <a type="button" (click)="goTo('forgetPassword')">{{labels.forgetPassword}}</a>
+            </div>
+          </div>
           <br/>
         </form>
       </div>
@@ -25,10 +34,45 @@
           <hr>
           <div class="row">
             <div class="col text-right">
-              <button type="button" class="btn btn-secondary" (click)="goTo('login')">{{globalLabels.buttons.back}}</button>
+              <button type="button" class="btn btn-secondary"
+                      (click)="goTo('login')">{{globalLabels.buttons.back}}</button>
             </div>
             <div class="col text-left">
               <button type="submit" class="btn btn-primary">{{labels.register}}</button>
+            </div>
+          </div>
+          <br/>
+        </form>
+      </div>
+      <div class="register-form" *ngIf="mode === 'forgetUser'">
+        <h2>{{labels.forgetUser}}</h2>
+        <form [formGroup]="form" (ngSubmit)="restore('forgetUser')" style="box-shadow: none !important;">
+          <formly-form [form]="formRestore" [fields]="fieldsRestore" [model]="modelRestore"></formly-form>
+          <hr>
+          <div class="row">
+            <div class="col text-right">
+              <button type="button" class="btn btn-secondary"
+                      (click)="goTo('login')">{{globalLabels.buttons.back}}</button>
+            </div>
+            <div class="col text-left">
+              <button type="submit" class="btn btn-primary">{{labels.restore}}</button>
+            </div>
+          </div>
+          <br/>
+        </form>
+      </div>
+      <div class="register-form" *ngIf="mode === 'forgetPassword'">
+        <h2>{{labels.forgetPassword}}</h2>
+        <form [formGroup]="form" (ngSubmit)="restore('forgetPassword')" style="box-shadow: none !important;">
+          <formly-form [form]="formRestore" [fields]="fieldsRestore" [model]="modelRestore"></formly-form>
+          <hr>
+          <div class="row">
+            <div class="col text-right">
+              <button type="button" class="btn btn-secondary"
+                      (click)="goTo('login')">{{globalLabels.buttons.back}}</button>
+            </div>
+            <div class="col text-left">
+              <button type="submit" class="btn btn-primary">{{labels.restore}}</button>
             </div>
           </div>
           <br/>
