@@ -210,7 +210,7 @@ export class LoginComponent implements OnInit {
 
   showRegisterError(code): void {
     switch (code) {
-      case 9000:
+      case 8000:
         this.dialog.buildDialog({
           message: this.labels.messages.emailRegisterAlready,
         });

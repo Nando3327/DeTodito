@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { AppService } from '../app.service';
-import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class LoginService {
 
-  constructor(private appService: AppService,
-              private http: HttpClient) {
+  constructor(private appService: AppService) {
   }
 
   public login(params): Observable<any> {
-    return this.http.post('http://localhost:8001/login', params, {}).pipe(
+    const paramsSend = {
+      headerData: {
+        source: 'LOGIN',
+        method: 'LOGIN'
+      },
+      detailsData: params
+    };
+    return this.appService.sendRequest(paramsSend).pipe(
       map((res: any) => {
         return res;
       }),
@@ -23,7 +28,14 @@ export class LoginService {
   }
 
   public register(params): Observable<any> {
-    return this.http.post('http://localhost:8001/register', params, {}).pipe(
+    const paramsSend = {
+      headerData: {
+        source: 'LOGIN',
+        method: 'REGISTER'
+      },
+      detailsData: params
+    };
+    return this.appService.sendRequest(paramsSend).pipe(
       map((res: any) => {
         return res;
       }),
