@@ -186,7 +186,7 @@ export class LoginComponent implements OnInit {
     this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
     this.loginService.register({
       name: this.modelRegister.formRegister.user,
-      lastName: this.modelRegister.formRegister.user,
+      lastName: this.modelRegister.formRegister.lastName,
       password: this.modelRegister.formRegister.password,
       email: this.modelRegister.formRegister.email,
     }).subscribe(res => {
