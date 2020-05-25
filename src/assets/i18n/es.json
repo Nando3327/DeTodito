@@ -103,10 +103,11 @@
       "emailPh": "Ingrese su dirección de correo"
     },
     "messages": {
-      "wrongUserPassword": "Usuario y/o contraseña incorrecta",
-      "emailRegisterAlready": "Correo ya registrado en el sistema",
-      "errorOnRegister": "No se pudo registrar su usuario. por favor reintente",
-      "userRegister": "Usuario registrado de manera exitosa."
+      "wrongUserPassword": "Usuario y/o contraseña incorrecta.",
+      "emailRegisterAlready": "Correo ya registrado en el sistema.",
+      "errorOnRegister": "No se pudo registrar su usuario. por favor reintente.",
+      "userRegister": "Usuario registrado de manera exitosa.",
+      "sendInfo": "La información solicitada se envio a su correo, por favor revise."
     }
   },
   "home": {

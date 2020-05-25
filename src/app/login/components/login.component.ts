@@ -241,7 +241,7 @@ export class LoginComponent implements OnInit {
     }).subscribe(res => {
       this.spinner.hide();
       this.dialog.buildDialog({
-        message: this.labels.messages.userRegister,
+        message: this.labels.messages.sendInfo,
       });
       this.goTo(LoginMode.login);
     }, _ => {
