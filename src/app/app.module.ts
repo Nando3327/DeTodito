@@ -43,7 +43,8 @@ export function createTranslateLoader(http: HttpClient) {
         {name: 'required', message: 'Campo obligatorio'},
         {name: 'email', message: 'Email incorrecto'},
         {name: 'invalidDateFormat', message: 'Formato fecha invalido'},
-        {name: 'ConfirmPassword', message: 'Contraseñas no coinciden'}
+        {name: 'ConfirmPassword', message: 'Contraseñas no coinciden'},
+        {name: 'SamePassword', message: 'Contraseña actual no puede ser la anterior'}
       ],
     }),
     FormlyMaterialModule,

@@ -78,6 +78,9 @@
           <br/>
         </form>
       </div>
+      <div class="register-form" *ngIf="mode === 'resetPassword'">
+        <app-reset-password [options]="resetPasswordOptions" (goBackEmiter)="goTo('login')"></app-reset-password>
+      </div>
     </div>
   </div>
 </div>

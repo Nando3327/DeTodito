@@ -10,6 +10,8 @@ import { SpinnerService } from '../../spinner/services/spinner.service';
 import { LoginMode } from '../models/login.model';
 import { FormsValidatorService } from '../../services/validator.service';
 import { MethodsNames } from '../../models/methods.model';
+import { isNullOrEmpty } from '../../general-functions/general-functions';
+import { ResetPasswordModel } from '../../models/reset-password.model';
 
 @Component({
   selector: 'app-login',
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
   fieldsRestore: FormlyFieldConfig[];
   loadPage = false;
   mode: string;
+  resetPasswordOptions: ResetPasswordModel;
 
   constructor(private translate: TranslateService,
               private router: Router,
@@ -44,6 +47,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.resetPasswordOptions = {
+      origin: 'menu'
+    };
     this.loadLabels();
   }
 
@@ -173,7 +179,7 @@ export class LoginComponent implements OnInit {
     }];
   }
 
-  moveNextEventPage() {
+  moveNextEventPage(): void {
     if (!this.form.valid) {
       return;
     }
@@ -184,8 +190,7 @@ export class LoginComponent implements OnInit {
     }).subscribe(res => {
       this.spinner.hide();
       if (res.code === 200) {
-        this.router.navigate(['/home']);
-        this.loginStatus.emit(true);
+        this.evaluateReturnDataLogin(res);
       } else {
         this.dialog.buildDialog({
           message: this.labels.messages.wrongUserPassword,
@@ -197,6 +202,21 @@ export class LoginComponent implements OnInit {
         message: this.globalLabels.errors.genericErrorMessage,
       });
     });
+  }
+
+  evaluateReturnDataLogin(data): void {
+    if (!isNullOrEmpty(data) && !isNullOrEmpty(data.data)) {
+      if (data.data.changePassword) {
+        this.goTo(LoginMode.resetPassword);
+      } else {
+        this.router.navigate(['/home']);
+        this.loginStatus.emit(true);
+      }
+    } else {
+      this.dialog.buildDialog({
+        message: this.labels.messages.wrongUserPassword,
+      });
+    }
   }
 
   register() {
@@ -275,6 +295,17 @@ export class LoginComponent implements OnInit {
       case LoginMode.forgetUser:
         break;
       case LoginMode.register:
+        break;
+      case LoginMode.resetPassword:
+        const field = this.fields[0].fieldGroup.find(el => {
+          return el.key === 'password';
+        });
+        if (!isNullOrEmpty(field)) {
+          field.formControl.setValue('');
+        }
+        Object.keys(this.form.controls).forEach(d => {
+          this.form.controls[d].markAsUntouched();
+        });
         break;
     }
     this.mode = mode;

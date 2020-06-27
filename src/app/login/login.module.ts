@@ -10,6 +10,7 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
 import { CommonModule } from '@angular/common';
 import { SideBarLoginModule } from '../side-bar-login';
 import { LoginService } from './login.service';
+import { ResetPasswordModule } from '../reset-password';
 
 
 @NgModule({
@@ -22,8 +23,10 @@ import { LoginService } from './login.service';
     FontAwesomeModule,
     ReactiveFormsModule,
     SideBarLoginModule,
-    FormlyModule.forRoot(),
-    FormlyMaterialModule],
+    FormlyModule.forChild(),
+    FormlyMaterialModule,
+    ResetPasswordModule
+  ],
   declarations: [...LOGIN_COMPONENTS],
   entryComponents: [],
   exports: [...LOGIN_COMPONENTS],

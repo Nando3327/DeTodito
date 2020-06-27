@@ -24,7 +24,8 @@
       "next": "Siguiente",
       "previous": "Anterior",
       "receipt": "Comprobante",
-      "review": "Revisar"
+      "review": "Revisar",
+      "reset": "Resetear"
     },
     "dialog": {
       "dearUser": "Estimado cliente",
@@ -112,5 +113,20 @@
   },
   "home": {
     "logOut": "Esta seguro que desea salir del sistema?"
+  },
+  "changePassword": {
+    "fields": {
+      "oldPassword": "Contraseña anterior:",
+      "oldPasswordPh": "Ingrese su contraseña anterior",
+      "newPassword": "Nueva Contraseña:",
+      "newPasswordPh": "Ingrese su nueva contraseña",
+      "confirmPassword": "Confirmación de contraseña:",
+      "confirmPasswordPh": "Ingrese la confirmación de su contraseña"
+    },
+    "messages": {
+      "cantChangePassword": "No se pudo realizar el cambio de contraseña, por favor reintente. Valida que todos los campos ingresados sean correctos.",
+      "wrongOldPassword": "El password anterior ingresado no es el correcto.",
+      "resetComplete": "Su contraseña fue actualizada exitosamente."
+    }
   }
 }

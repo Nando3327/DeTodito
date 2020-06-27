@@ -11,8 +11,22 @@ export class FormsValidatorService {
     if (password !== confirmPassword) {
       control.get('passwordConfirm').setErrors({ConfirmPassword: true});
     } else {
-      return null;
+      control.get('passwordConfirm').setErrors(null);
     }
+    return null;
+  }
+
+  public validatePasswords(control: FormControl): ValidationErrors {
+    const password = control.get('password').value;
+
+    const oldPassword = control.get('oldPassword').value;
+
+    if (password === oldPassword) {
+      control.get('password').setErrors({SamePassword: true});
+    } else {
+      control.get('password').setErrors(null);
+    }
+    return null;
   }
 
   public emailValidator(control: FormControl): ValidationErrors {
