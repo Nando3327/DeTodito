@@ -1,0 +1,9 @@
+<form [formGroup]="form" style="box-shadow: none !important;" (ngSubmit)="resetAlias()">
+  <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
+  <hr>
+  <div class="row">
+    <div class="col text-center">
+      <button type="submit" class="btn btn-primary">{{globalLabels.buttons.reset}}</button>
+    </div>
+  </div>
+</form>

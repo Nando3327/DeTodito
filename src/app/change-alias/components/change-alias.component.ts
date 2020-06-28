@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DialogBuildService } from '../../dialog/components';
 import { TranslateService } from '@ngx-translate/core';
 import { ResetPasswordModel } from '../../models/reset-password.model';
@@ -7,19 +7,19 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormsValidatorService } from '../../services/validator.service';
 import { SpinnerModel } from '../../spinner/models';
 import { SpinnerService } from '../../spinner/services/spinner.service';
-import { ResetPasswordService } from '../reset-password.service';
+import { ChangeAliasService } from '../change-alias.service';
 import { isNullOrEmpty } from '../../general-functions/general-functions';
+import { UserStoreService } from '../../../store/entity/user';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
+  selector: 'app-change-alias',
+  templateUrl: './change-alias.component.html',
+  styleUrls: ['./change-alias.component.scss']
 })
-export class ResetPasswordComponent implements OnInit {
+export class ChangeAliasComponent implements OnInit {
 
   @Input() options: ResetPasswordModel;
-  @Output() goBackEmiter: EventEmitter<any>;
   labels: any;
   globalLabels: any;
   form = new FormGroup({});
@@ -30,23 +30,20 @@ export class ResetPasswordComponent implements OnInit {
               private translate: TranslateService,
               private spinner: SpinnerService,
               private validators: FormsValidatorService,
-              private router: Router,
-              private resetPasswordService: ResetPasswordService
+              private changeAliasService: ChangeAliasService,
+              private storeUser: UserStoreService,
+              private router: Router
   ) {
-    this.goBackEmiter = new EventEmitter();
   }
 
   ngOnInit(): void {
-    this.options = !isNullOrEmpty(this.options) ? this.options : {
-      origin: 'menu'
-    };
     this.loadLabels();
   }
 
   loadLabels(): void {
-    this.translate.get(['changePassword', 'global']).subscribe(labels => {
+    this.translate.get(['changeAlias', 'global']).subscribe(labels => {
       this.globalLabels = labels.global;
-      this.labels = labels['changePassword'];
+      this.labels = labels['changeAlias'];
       this.loadFields();
     });
   }
@@ -54,41 +51,32 @@ export class ResetPasswordComponent implements OnInit {
   loadFields(): void {
     this.fields = [{
       fieldGroupClassName: 'row',
-      key: 'formResetPassword',
+      key: 'formChangeAlias',
       validators: {
-        validation: [this.validators.validateConfirmPassword, this.validators.validatePasswords]
+        validation: [this.validators.validateAlias]
       },
       fieldGroup: [
         {
-          key: 'oldPassword',
+          key: 'alias',
           type: 'input',
           className: 'col-sm-12',
           templateOptions: {
-            type: 'password',
-            label: this.labels.fields.oldPassword,
-            placeholder: this.labels.fields.oldPasswordPh,
-            required: true,
+            label: this.labels.fields.alias,
+            disabled: true
+          },
+          hooks: {
+            onInit: (field) => {
+              field.formControl.setValue(this.storeUser.getUser().alias);
+            }
           }
         },
         {
-          key: 'password',
+          key: 'newAlias',
           type: 'input',
           className: 'col-sm-12',
           templateOptions: {
-            type: 'password',
-            label: this.labels.fields.newPassword,
-            placeholder: this.labels.fields.newPasswordPh,
-            required: true,
-          }
-        },
-        {
-          key: 'passwordConfirm',
-          type: 'input',
-          className: 'col-sm-12',
-          templateOptions: {
-            type: 'password',
-            label: this.labels.fields.confirmPassword,
-            placeholder: this.labels.fields.confirmPasswordPh,
+            label: this.labels.fields.newAlias,
+            placeholder: this.labels.fields.newAliasPh,
             required: true,
           }
         }
@@ -96,7 +84,7 @@ export class ResetPasswordComponent implements OnInit {
     }];
   }
 
-  resetPassword(): void {
+  resetAlias(): void {
     if (!this.form.valid) {
       Object.keys(this.form.controls).forEach(d => {
         this.form.controls[d].markAsTouched();
@@ -104,9 +92,8 @@ export class ResetPasswordComponent implements OnInit {
       return;
     }
     this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
-    this.resetPasswordService.resetPassword({
-      oldPassword: this.model.formResetPassword.oldPassword,
-      password: this.model.formResetPassword.password
+    this.changeAliasService.changeAlias({
+      newAlias: this.model.formChangeAlias.newAlias
     }).subscribe(res => {
       this.spinner.hide();
       this.validateResponse(res);
@@ -127,28 +114,25 @@ export class ResetPasswordComponent implements OnInit {
           });
           this.goBack();
           break;
-        case 8006:
+        case 8008:
+        case 8004:
           this.dialog.buildDialog({
-            message: this.labels.messages.wrongOldPassword,
+            message: this.labels.messages.cantChangeAlias,
           });
           break;
         default:
           this.dialog.buildDialog({
-            message: this.labels.messages.cantChangePassword,
+            message: this.globalLabels.errors.genericErrorMessage,
           });
       }
     } else {
       this.dialog.buildDialog({
-        message: this.labels.messages.cantChangePassword,
+        message: this.labels.messages.cantChangeAlias,
       });
     }
   }
 
   goBack(): void {
-    if (this.options.origin === 'login') {
-      this.goBackEmiter.next(true);
-    } else {
-      this.router.navigate(['/']);
-    }
+    this.router.navigate(['/']);
   }
 }

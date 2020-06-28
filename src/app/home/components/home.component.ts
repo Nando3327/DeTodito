@@ -35,8 +35,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.loadLabels();
     this.fillerNav = [
       {
-        url: '/home/categories',
-        text: 'Categories'
+        transactionName: 'Categories',
+        transactionData: [{
+          url: '/home/categories',
+          text: 'Categories'
+        }]
+      },
+      {
+        transactionName: 'PersonalManagement',
+        transactionData: [{
+          url: '/home/changeAlias',
+          text: 'Change Alias'
+        }, {
+          url: '/home/resetPassword',
+          text: 'Change Password'
+        }]
       }
     ];
     this.title = '';

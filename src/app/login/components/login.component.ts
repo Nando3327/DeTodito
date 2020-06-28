@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.resetPasswordOptions = {
-      origin: 'menu'
+      origin: 'login'
     };
     this.loadLabels();
   }

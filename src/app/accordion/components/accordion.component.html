@@ -1,0 +1,17 @@
+<div class="custom-accordion-style">
+    <div class="accordion" [ngClass]="{'accordion-toggle-minus': expanded, 'accordion-toggle-plus': !expanded}"  id="accordion">
+        <div class="card cardAcordion" (click)="toogleAccordion($event, 'accordion_IMPRIMIR');">
+            <div class="card-header" id="headingOne4">
+                <div class="card-title collapsed" data-toggle="collapse" [attr.data-target]="'accordion_IMPRIMIR'"
+                     aria-expanded="false" aria-controls="collapseOne4">
+                    <i class="flaticon2-layers-1"></i> {{title}}
+                </div>
+            </div>
+            <div class="collapse" [ngClass]="{'show': expanded}" aria-labelledby="headingOne" [attr.data-parent]="'#accordion'" id="accordion_IMPRIMIR" #panels>
+                <div class="card-body">
+                    <ng-content></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

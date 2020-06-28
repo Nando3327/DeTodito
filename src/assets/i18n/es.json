@@ -128,5 +128,16 @@
       "wrongOldPassword": "El password anterior ingresado no es el correcto.",
       "resetComplete": "Su contraseña fue actualizada exitosamente."
     }
+  },
+  "changeAlias": {
+    "fields": {
+      "alias": "Alias:",
+      "newAlias": "Nuevo alias:",
+      "newAliasPh": "Ingrese su nuevo alias"
+    },
+    "messages": {
+      "cantChangeAlias": "No se pudo realizar el cambio de alias, por favor reintente. Valida que todos los campos ingresados sean correctos.",
+      "resetComplete": "Su alias fue actualizada exitosamente."
+    }
   }
 }

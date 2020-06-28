@@ -1,0 +1,14 @@
+.custom-accordion-style {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 576px){
+  .accordion .card .card-body {
+    padding: 0 !important;
+  }
+}
+
+.cardAcordion {
+  overflow: inherit !important;
+}

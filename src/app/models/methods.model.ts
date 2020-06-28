@@ -3,5 +3,6 @@ export const MethodsNames = {
   register: 'REGISTER',
   forgetPassword: 'RESTOREPASSWORD',
   forgetUser: 'RESTOREUSER',
-  resetPassword: 'RESETPASSWORD'
+  resetPassword: 'RESETPASSWORD',
+  changeAlias: 'CHANGEALIAS'
 };

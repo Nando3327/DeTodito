@@ -29,6 +29,19 @@ export class FormsValidatorService {
     return null;
   }
 
+  public validateAlias(control: FormControl): ValidationErrors {
+    const alias = control.get('alias').value;
+
+    const newAlias = control.get('newAlias').value;
+
+    if (alias === newAlias) {
+      control.get('newAlias').setErrors({SameAlias: true});
+    } else {
+      control.get('newAlias').setErrors(null);
+    }
+    return null;
+  }
+
   public emailValidator(control: FormControl): ValidationErrors {
     return !control.value ||
     control.value.match(

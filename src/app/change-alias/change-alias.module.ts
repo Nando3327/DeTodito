@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
-import { HOME_COMPONENTS } from './components';
+import { CHANGE_ALIAS_COMPONENTS, ChangeAliasComponent } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from '../material.module';
 import { DataTableModule } from '../data-table';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import { CategoriesModule } from '../categories';
 import { CommonModule } from '@angular/common';
-import { AccordionModule } from '../accordion';
+import { ChangeAliasService } from './change-alias.service';
+import { Route, RouterModule } from '@angular/router';
 
+const routes: Route[] = [
+  {
+    path: '',
+    component: ChangeAliasComponent,
+  },
+  { path: '', redirectTo: '', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [
@@ -19,15 +26,14 @@ import { AccordionModule } from '../accordion';
     ReactiveFormsModule,
     DemoMaterialModule,
     DataTableModule,
-    CategoriesModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forChild(),
     FormlyMaterialModule,
-    AccordionModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [...HOME_COMPONENTS],
-  entryComponents: [...HOME_COMPONENTS],
-  exports: [...HOME_COMPONENTS],
-  providers: []
+  declarations: [...CHANGE_ALIAS_COMPONENTS],
+  entryComponents: [...CHANGE_ALIAS_COMPONENTS],
+  exports: [...CHANGE_ALIAS_COMPONENTS],
+  providers: [ChangeAliasService]
 })
-export class HomeModule {
+export class ChangeAliasModule {
 }

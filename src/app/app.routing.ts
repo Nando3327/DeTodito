@@ -25,7 +25,16 @@ const routes: Route[] = [
         loadChildren: () =>
           import('./categories/categories.module').then(m => m.CategoriesModule)
       },
-    ]
+      {
+        path: 'changeAlias',
+        loadChildren: () =>
+          import('./change-alias/change-alias.module').then(m => m.ChangeAliasModule)
+      }, {
+        path: 'resetPassword',
+        loadChildren: () =>
+          import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)
+      }
+    ],
   },
   {
     path: '',
