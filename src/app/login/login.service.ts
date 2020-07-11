@@ -30,6 +30,7 @@ export class LoginService {
             name: res.data.name,
             lastName: res.data.lastName,
             email: res.data.email,
+            selectedProfile: res.data.profileData.profile,
             profiles: res.data.profiles,
             profileData: res.data.profileData
           });

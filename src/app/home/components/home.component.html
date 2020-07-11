@@ -9,13 +9,13 @@
         <mat-icon>keyboard_arrow_down</mat-icon>
       </button>
       <mat-menu #menuOptions="matMenu">
-        <button
-          *ngFor="let button of extraOptions"
-          mat-menu-item
-          (click)="button.handler()"
-        >
-          {{ button.name }}
-        </button>
+        <mat-nav-list *ngFor="let extraOption of extraOptions">
+          <mat-list-item>
+            <a mat-list-item (click)="extraOption.handler(extraOption)">
+              {{extraOption.name}}
+            </a>
+          </mat-list-item>
+        </mat-nav-list>
       </mat-menu>
     </div>
   </mat-toolbar>
@@ -36,6 +36,14 @@
             </app-accordion>
           </mat-nav-list>
         </app-accordion>
+      </mat-nav-list>
+
+      <mat-nav-list *ngIf="showChangeProfile">
+        <mat-list-item>
+          <a mat-list-item routerLink="{{changeprofileData.link}}"  (click)="chargeComponent(snav, changeprofileData)">
+            {{changeprofileData.name}}
+          </a>
+        </mat-list-item>
       </mat-nav-list>
     </mat-sidenav>
 

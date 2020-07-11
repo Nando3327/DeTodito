@@ -9,6 +9,7 @@ export function createInitialUserState(): UserState {
     name: '',
     lastName: '',
     email: '',
+    selectedProfile: '',
     profiles: [],
     profileData: {}
   };

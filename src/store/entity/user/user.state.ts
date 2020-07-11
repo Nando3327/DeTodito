@@ -4,6 +4,7 @@ export interface UserState {
   name: string;
   lastName: string;
   email: string;
+  selectedProfile: string|number;
   profiles: Array<any>;
   profileData: any;
 }

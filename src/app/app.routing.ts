@@ -4,7 +4,6 @@ import { RouterModule, Route } from '@angular/router';
 import { HomeComponent } from './home/components';
 import { LoginComponent } from './login/components';
 
-
 const routes: Route[] = [
   {
     path: 'home',
@@ -29,10 +28,16 @@ const routes: Route[] = [
         path: 'changeAlias',
         loadChildren: () =>
           import('./change-alias/change-alias.module').then(m => m.ChangeAliasModule)
-      }, {
+      },
+      {
         path: 'resetPassword',
         loadChildren: () =>
           import('./reset-password/reset-password.module').then(m => m.ResetPasswordModule)
+      },
+      {
+        path: 'changeProfile',
+        loadChildren: () =>
+          import('./change-profile/change-profile.module').then(m => m.ChangeProfileModule)
       }
     ],
   },

@@ -20,6 +20,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   globalLabels: any;
   title: string;
   loadPage = false;
+  changeprofileData: any = {
+    link: '/home/changeProfile',
+    name: 'Cambio de Perfil',
+    handler: (event) => {
+      this.title = event.name;
+    }
+  };
+
+  showChangeProfile = false;
   private _mobileQueryListener: () => void;
 
   constructor(private changeDetectorRef: ChangeDetectorRef,
@@ -39,9 +48,13 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.title = '';
     this.extraOptions = [{
       url: '/',
-      name: 'LogOut',
+      name: 'Cierre de Sesión',
       handler: this.logOut.bind(this)
     }];
+    if (this.storeUser.getUser().profiles.length > 1) {
+      this.showChangeProfile = true;
+
+    }
   }
 
   loadLabels(): void {
