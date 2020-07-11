@@ -3,6 +3,7 @@ import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 import { DialogBuildService } from '../../dialog/components';
 import { TranslateService } from '@ngx-translate/core';
+import { UserStoreService } from '../../../store/entity/user';
 
 @Component({
   selector: 'app-home',
@@ -25,33 +26,16 @@ export class HomeComponent implements OnInit, OnDestroy {
               private media: MediaMatcher,
               private dialog: DialogBuildService,
               private router: Router,
-              private translate: TranslateService,) {
+              private translate: TranslateService,
+              private storeUser: UserStoreService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
-    this.mobileQuery.addListener(this._mobileQueryListener,);
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
 
   ngOnInit(): void {
     this.loadLabels();
-    this.fillerNav = [
-      {
-        transactionName: 'Categories',
-        transactionData: [{
-          url: '/home/categories',
-          text: 'Categories'
-        }]
-      },
-      {
-        transactionName: 'PersonalManagement',
-        transactionData: [{
-          url: '/home/changeAlias',
-          text: 'Change Alias'
-        }, {
-          url: '/home/resetPassword',
-          text: 'Change Password'
-        }]
-      }
-    ];
+    this.fillerNav = this.storeUser.getUser().profileData.app;
     this.title = '';
     this.extraOptions = [{
       url: '/',
@@ -91,7 +75,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   chargeComponent(snav, nav): void {
     this.loadComponent = true;
-    this.title = nav.text;
+    this.title = nav.name;
     snav.toggle();
   }
 }

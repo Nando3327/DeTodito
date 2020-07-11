@@ -29,7 +29,9 @@ export class LoginService {
             alias: res.data.alias,
             name: res.data.name,
             lastName: res.data.lastName,
-            email: res.data.email
+            email: res.data.email,
+            profiles: res.data.profiles,
+            profileData: res.data.profileData
           });
         }
         return res;

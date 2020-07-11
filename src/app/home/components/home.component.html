@@ -24,13 +24,17 @@
                          [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="'over'"
                  [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" class="sidenavWidth">
-      <mat-nav-list *ngFor="let nav of fillerNav">
-        <app-accordion [title]="nav.transactionName" [expanded]="false">
-          <mat-list-item *ngFor="let link of nav.transactionData">
-            <a mat-list-item routerLink="{{link.url}}"  (click)="chargeComponent(snav, link)">
-              {{link.text}}
-            </a>
-          </mat-list-item>
+      <mat-nav-list *ngFor="let app of fillerNav">
+        <app-accordion [title]="app.name" [expanded]="false">
+          <mat-nav-list *ngFor="let moduleData of app.modules">
+            <app-accordion [title]="moduleData.name" [expanded]="false">
+              <mat-list-item *ngFor="let transaction of moduleData.transactions">
+                <a mat-list-item routerLink="{{transaction.link}}"  (click)="chargeComponent(snav, transaction)">
+                  {{transaction.name}}
+                </a>
+              </mat-list-item>
+            </app-accordion>
+          </mat-nav-list>
         </app-accordion>
       </mat-nav-list>
     </mat-sidenav>

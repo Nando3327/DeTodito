@@ -66,7 +66,9 @@ export class ChangeAliasComponent implements OnInit {
           },
           hooks: {
             onInit: (field) => {
-              field.formControl.setValue(this.storeUser.getUser().alias);
+              setTimeout(_ => {
+                field.formControl.setValue(this.storeUser.getUser().alias);
+              }, 100);
             }
           }
         },

@@ -8,7 +8,9 @@ export function createInitialUserState(): UserState {
     alias: '',
     name: '',
     lastName: '',
-    email: ''
+    email: '',
+    profiles: [],
+    profileData: {}
   };
 }
 

@@ -4,4 +4,6 @@ export interface UserState {
   name: string;
   lastName: string;
   email: string;
+  profiles: Array<any>;
+  profileData: any;
 }
