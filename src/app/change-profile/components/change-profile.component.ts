@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTableOptionsModel } from '../../data-table/components';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { UserStoreService } from '../../../store/entity/user';
+import { ChangeProfileService } from '../change-profile.service';
+import { TranslateService } from '@ngx-translate/core';
+import { DialogBuildService } from '../../dialog/components';
+import { SpinnerModel } from '../../spinner/models';
+import { SpinnerService } from '../../spinner/services/spinner.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-profile',
@@ -13,149 +18,82 @@ export class ChangeProfileComponent implements OnInit {
   data: Array<any> = [];
   showTable = false;
   tableOptions: DataTableOptionsModel;
+  labels: any;
+  globalLabels: any;
 
-  form = new FormGroup({});
-  model: any;
-  options: FormlyFormOptions = {};
-  fields: FormlyFieldConfig[];
-
-  constructor() {
+  constructor(private storeUser: UserStoreService,
+              private translate: TranslateService,
+              private dialog: DialogBuildService,
+              private spinner: SpinnerService,
+              private router: Router,
+              private changeProfileService: ChangeProfileService) {
   }
 
   initGrid() {
     this.tableOptions = {
-      title: 'TITULO',
+      title: this.labels.table.title,
       columns: [
-        {field: 'name', name: 'name'},
-        {field: 'progress', name: 'progress'},
-        {field: 'id', name: 'id'},
-        {field: 'id23', name: 'campo nuevo'},
-        {field: 'color', name: 'color'},
+        {field: 'name', name: this.labels.table.columns.profileName},
         {
           field: 'actions',
-          name: 'Acciones',
+          name: this.labels.table.columns.change,
           type: 'actions',
           options: {
             buttons: [
               {
-                tooltip: 'detailes',
-                icon: 'remove_red_eye',
+                tooltip: this.labels.table.columns.change,
+                icon: 'refresh',
                 handler: this.searchDetails.bind(this)
               }
             ]
           }
         }
-      ],
-      buttons: [
-        {
-          name: 'new',
-          handler: () => {
-            this.deleteTransferAction();
-          }
-        },
-        {
-          name: 'delete',
-          handler: () => {
-            this.deleteTransferAction();
-          }
-        }
-      ],
-      //selectField: true
+      ]
     };
+    setTimeout(_ => {
+      this.showTable = true;
+    }, 100);
   }
 
   searchDetails(item): void {
-    console.log(item);
+    this.spinner.show(new SpinnerModel(this.globalLabels.spinner.loading));
+    this.changeProfileService.changeProfile({
+      profile: item.id
+    }).subscribe(ret => {
+      this.spinner.hide();
+      if (ret) {
+        this.router.navigate(['/home'], {
+          replaceUrl: true,
+          queryParams: {
+            refresh: true
+          }
+        });
+      } else {
+        this.dialog.buildDialog({
+          message: this.labels.errors.canNotChangeProfile,
+        });
+      }
+    }, _ => {
+      this.spinner.hide();
+      this.dialog.buildDialog({
+        message: this.globalLabels.errors.genericErrorMessage,
+      });
+    });
   }
 
-  deleteTransferAction(): void {
-    this.data.push(createNewUser(this.data.length + 1));
-    this.showTable = false;
-    setTimeout(_ => {
-      this.showTable = true;
-    }, 100);
-  }
-
-  initForm(): void {
-    this.fields = [{
-      fieldGroupClassName: 'row',
-      key: 'formValuesAmountTransaction',
-      fieldGroup: [
-        {
-          key: 'email',
-          type: 'input',
-          className: 'col-md-6',
-          templateOptions: {
-            label: 'Email address',
-            placeholder: 'Enter email',
-            required: true,
-          }
-        },
-        {
-          key: 'text',
-          type: 'input',
-          className: 'col-md-6',
-          templateOptions: {
-            label: 'text',
-            placeholder: 'Enter email',
-            required: true,
-          }
-        },
-        {
-          key: 'text',
-          type: 'input',
-          className: 'col-md-6',
-          templateOptions: {
-            label: 'text',
-            placeholder: 'Enter email',
-            required: true,
-          }
-        }
-      ]
-    }];
-  }
-
-  onSubmit() {
-    console.log(this.model);
+  loadLabels(): void {
+    this.translate.get(['changeProfile', 'global']).subscribe(labels => {
+      this.globalLabels = labels.global;
+      this.labels = labels['changeProfile'];
+      this.initGrid();
+    });
   }
 
   ngOnInit(): void {
-    this.initForm();
-    this.initGrid();
-    setTimeout(_ => {
-      this.showTable = true;
-    }, 100);
-    for (let i = 1; i <= 1; i++) {
-      this.data.push(createNewUser(i));
-    }
-
+    this.loadLabels();
+    this.data = this.storeUser.getUser().profiles.filter(p => {
+      return p.id !== this.storeUser.getUser().selectedProfile;
+    });
   }
 
-}
-
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    progress: Math.round(Math.random() * 100).toString(),
-    color: COLORS[Math.round(Math.random() * (COLORS.length - 1))]
-  };
-}
-
-/** Constants used to fill up our data base. */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-  'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NAMES = ['Maia', 'Asher', 'Olivia', 'Atticus', 'Amelia', 'Jack',
-  'Charlotte', 'Theodore', 'Isla', 'Oliver', 'Isabella', 'Jasper',
-  'Cora', 'Levi', 'Violet', 'Arthur', 'Mia', 'Thomas', 'Elizabeth'];
-
-export interface UserData {
-  id: string;
-  name: string;
-  progress: string;
-  color: string;
 }

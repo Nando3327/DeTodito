@@ -8,6 +8,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
 import { Route, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ChangeProfileService } from './change-profile.service';
 
 const routes: Route[] = [
   {
@@ -32,7 +33,7 @@ const routes: Route[] = [
   declarations: [...CHANGE_PROFILE_COMPONENTS],
   entryComponents: [...CHANGE_PROFILE_COMPONENTS],
   exports: [...CHANGE_PROFILE_COMPONENTS, RouterModule],
-  providers: []
+  providers: [ChangeProfileService]
 })
 export class ChangeProfileModule {
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HOME_COMPONENTS, HomeComponent } from './components';
+import { HOME_COMPONENTS } from './components';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from '../material.module';
@@ -14,7 +14,7 @@ const routes: Route[] = [
   {
     path: ''
   },
-  { path: '', redirectTo: '', pathMatch: 'full' }
+  {path: '', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

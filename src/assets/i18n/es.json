@@ -112,7 +112,11 @@
     }
   },
   "home": {
-    "logOut": "Esta seguro que desea salir del sistema?"
+    "logOut": "Esta seguro que desea salir del sistema?",
+    "links": {
+      "closeSesion": "Cierre de Sesión",
+      "changeProfile": "Cambio de Perfil"
+    }
   },
   "changePassword": {
     "fields": {
@@ -138,6 +142,18 @@
     "messages": {
       "cantChangeAlias": "No se pudo realizar el cambio de alias, por favor reintente. Valida que todos los campos ingresados sean correctos.",
       "resetComplete": "Su alias fue actualizada exitosamente."
+    }
+  },
+  "changeProfile": {
+    "errors": {
+      "canNotChangeProfile": "Nose pudo realizar el cambio de perfil, por favor reintente."
+    },
+    "table": {
+      "title": "Perfiles Disponibles",
+      "columns": {
+        "profileName": "Perfil",
+        "change": "Cambiar de perfil"
+      }
     }
   }
 }

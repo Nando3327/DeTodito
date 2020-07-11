@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DialogBuildService } from '../../dialog/components';
 import { TranslateService } from '@ngx-translate/core';
 import { UserStoreService } from '../../../store/entity/user';
@@ -20,13 +20,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   globalLabels: any;
   title: string;
   loadPage = false;
-  changeprofileData: any = {
-    link: '/home/changeProfile',
-    name: 'Cambio de Perfil',
-    handler: (event) => {
-      this.title = event.name;
-    }
-  };
+  changeprofileData: any;
 
   showChangeProfile = false;
   private _mobileQueryListener: () => void;
@@ -35,6 +29,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               private media: MediaMatcher,
               private dialog: DialogBuildService,
               private router: Router,
+              private route: ActivatedRoute,
               private translate: TranslateService,
               private storeUser: UserStoreService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
@@ -44,16 +39,31 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadLabels();
-    this.fillerNav = this.storeUser.getUser().profileData.app;
+    this.route.queryParams.subscribe(data => {
+      if (data.refresh) {
+        this.loadData();
+        this.loadComponent = false;
+      }
+    });
+  }
+
+  loadData(): void {
     this.title = '';
+    this.fillerNav = this.storeUser.getUser().profileData.app;
     this.extraOptions = [{
       url: '/',
-      name: 'Cierre de Sesión',
+      name: this.labels.links.closeSesion,
       handler: this.logOut.bind(this)
     }];
+    this.changeprofileData = {
+      link: '/home/changeProfile',
+      name: this.labels.links.changeProfile,
+      handler: (event) => {
+        this.title = event.name;
+      }
+    };
     if (this.storeUser.getUser().profiles.length > 1) {
       this.showChangeProfile = true;
-
     }
   }
 
@@ -63,6 +73,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.labels = labels['home'];
       this.loadPage = true;
     });
+    this.loadData();
   }
 
   logOut() {
