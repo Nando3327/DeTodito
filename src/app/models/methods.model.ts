@@ -5,5 +5,6 @@ export const MethodsNames = {
   forgetUser: 'RESTOREUSER',
   resetPassword: 'RESETPASSWORD',
   changeAlias: 'CHANGEALIAS',
-  changeProfile: 'CHANGEPROFILE'
+  changeProfile: 'CHANGEPROFILE',
+  getProfiles: 'GETPROFILES'
 };

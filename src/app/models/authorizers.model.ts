@@ -1,3 +1,4 @@
 export const AuthorizersNames = {
-  login: 'LOGIN'
+  login: 'LOGIN',
+  profiles: 'PROFILES'
 };

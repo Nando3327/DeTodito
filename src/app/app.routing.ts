@@ -38,6 +38,11 @@ const routes: Route[] = [
         path: 'changeProfile',
         loadChildren: () =>
           import('./change-profile/change-profile.module').then(m => m.ChangeProfileModule)
+      },
+      {
+        path: 'profiles',
+        loadChildren: () =>
+          import('./profiles/profiles.module').then(m => m.ProfilesModule)
       }
     ],
   },
